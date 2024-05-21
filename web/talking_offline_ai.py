@@ -5,6 +5,8 @@ import time
 import aiml
 import os
 
+import presidencyRelatedAi as pai
+
 
 def update_expression_ai(new_expression):
     try:
@@ -89,7 +91,9 @@ def ai_conversation(chatbot):
             print(f"You said: {user_input}")
 
             # Get AI response
-            ai_response = chatbot.get_response(user_input)
+            ai_response = pai.presiAnswer(user_input)
+            if(ai_response == "sorry"):
+                ai_response = chatbot.get_response(user_input)
             update_expression_ai("talking")
             print(f"AI: {ai_response}")
             speak(ai_response)
@@ -112,3 +116,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
